@@ -1,0 +1,76 @@
+
+* {
+    font-family: "FiraMono Nerd Font";
+    font-weight: bold;
+    font-size: 12px;
+}
+
+@define-color background         #202020;
+@define-color foreground         #d5c4a1;
+
+@define-color workspace-current  #bdae93;
+@define-color workspace-empty    #504945;
+@define-color workspace-visible  #665C54;
+
+@define-color border             #505050; /* #454545 */
+@define-color tooltip-border     #707070;
+@define-color module-background  #323232;
+@define-color urgent             #fb4934;
+
+window#waybar {
+	background: @background;
+	color: @foreground
+}
+
+tooltip {
+	background: @module-background;
+	border: 1px solid @tooltip-border;
+	border-radius: 6px
+}
+
+
+#workspaces {
+	margin-left: 8px
+}
+
+#workspaces button {
+	margin: -0.7em;
+	color: @workspace-visible
+}
+
+#workspaces button.empty {
+	color: @workspace-empty
+}
+
+#workspaces button.focused {
+	color: @workspace-current
+}
+
+@keyframes urgent-workspace {
+	0% { color: @urgent }
+}
+
+#workspaces button.urgent {
+	animation: urgent-workspace 1s infinite
+}
+
+
+#window {
+	border: none;
+	background: transparent
+}
+
+/* Make window module transparent when no windows present */
+window#waybar.empty #window {
+    background-color: transparent
+}
+
+.module {
+    padding: 0px 6px;
+    margin: 4px
+}
+
+#custom-separator {
+  margin: 0 0px;
+  padding: 0px;
+}
