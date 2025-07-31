@@ -1,0 +1,22 @@
+fpath+=($HOME/.zsh/pure)
+
+autoload -U compinit promptinit
+compinit
+promptinit
+
+# change the path color
+zstyle :prompt:pure:path color cyan
+
+# change the color for both `prompt:success` and `prompt:error`
+zstyle ':prompt:pure:prompt:success' color green
+zstyle ':prompt:pure:prompt:error' color red
+
+zstyle :prompt:pure:git:branch color green
+
+# turn on git stash status
+zstyle :prompt:pure:git:stash show yes
+
+prompt pure
+
+zstyle ':completion::complete:*' use-cache 1
+
