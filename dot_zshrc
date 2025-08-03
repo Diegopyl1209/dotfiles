@@ -31,3 +31,7 @@ zstyle ':completion::complete:*' use-cache 1
 # AutoSuggestions
 
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Syntax Highlighting
+
+source ~/.zsh/zsh-syntax-hightlighting/zsh-syntax-highlighting.zsh
