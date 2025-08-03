@@ -12,3 +12,8 @@
     type = "git-repo"
     url = "https://github.com/sindresorhus/pure.git"
     refreshPeriod = "168h"
+
+[".zsh/zsh-autosuggestions"]
+    type = "git-repo"
+    url = "https://github.com/zsh-users/zsh-autosuggestions.git"
+    refreshPeriod = "168h"

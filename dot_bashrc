@@ -16,7 +16,3 @@ fi
 
 
 # Put your fun stuff here.
-
-
-[[ "$SHELL" != */fish ]] && [ -x /usr/bin/fish ] && \
-  SHELL=/usr/bin/fish exec fish
