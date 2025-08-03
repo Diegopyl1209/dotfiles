@@ -7,8 +7,3 @@
     type = "file"
     url	= "https://raw.githubusercontent.com/jamescherti/minimal-emacs.d/refs/heads/main/early-init.el"
     refreshPeriod = "168h"
-
-[".zsh/pure"]
-    type = "git-repo"
-    url = "https://github.com/sindresorhus/pure.git"
-    refreshPeriod = "168h"
