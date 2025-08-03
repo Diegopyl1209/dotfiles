@@ -26,3 +26,8 @@ zstyle :prompt:pure:git:stash show yes
 prompt pure
 
 zstyle ':completion::complete:*' use-cache 1
+
+
+# AutoSuggestions
+
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
