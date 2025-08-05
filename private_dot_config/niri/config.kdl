@@ -104,6 +104,7 @@ window-rule {
     match app-id="zen"
     exclude title=r#"^Zen Browser$"#
     match title="RuneLite"
+    match app-id="org.keepassxc.KeePassXC"    
 
     open-floating true
 }
