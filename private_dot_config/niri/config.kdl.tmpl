@@ -16,6 +16,8 @@ cursor {
     xcursor-size 24
 }
 
+{{- if eq .chezmoi.hostname "tux"}}
+
 output "HDMI-A-1" {
     scale 1
     focus-at-startup
@@ -26,6 +28,8 @@ output "HDMI-A-2" {
     scale 1
     position x=1920 y=330
 }
+
+{{- end}}
 
 layout {
     gaps 16
