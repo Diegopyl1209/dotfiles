@@ -343,16 +343,31 @@
   :config (load-theme 'doom-gruvbox t))
 
 (set-frame-font "JetBrainsMono Nerd Font 10" nil t)
+(setq default-frame-alist '((font . "JetBrainsMono Nerd Font 10")))
 
-
-(use-package mood-line
-  :config
-  ;;(setq mood-line-format mood-line-format-default-extended)
-  (setq mood-line-format mood-line-format-default)
-  (mood-line-mode)
-
+(use-package nerd-icons
+  :straight (nerd-icons
+             :type git
+             :host github
+             :repo "rainstormstudio/nerd-icons.el"
+             :files (:defaults "data"))
   :custom
-  (mood-line-glyph-alist mood-line-glyphs-fira-code))
+  (nerd-icons-font-family "Symbols Nerd Font Mono"))
+
+(use-package doom-modeline
+  :straight (:host nil :type git
+                   :repo "https://github.com/seagle0128/doom-modeline.git")
+  :init (doom-modeline-mode)
+  )
+
+;; (use-package mood-line
+;;   :config
+;;   ;;(setq mood-line-format mood-line-format-default-extended)
+;;   (setq mood-line-format mood-line-format-default)
+;;   (mood-line-mode)
+;;
+;;   :custom
+;;   (mood-line-glyph-alist mood-line-glyphs-fira-code))
 
 
 (setq-default display-line-numbers-type 'relative)
