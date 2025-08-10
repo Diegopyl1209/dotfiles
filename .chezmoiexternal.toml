@@ -1,12 +1,12 @@
-[".emacs.d/init.el"]
-    type = "file"
-    url = "https://raw.githubusercontent.com/jamescherti/minimal-emacs.d/refs/heads/main/init.el"
-    refreshPeriod = "168h"
+#[".emacs.d/init.el"]
+#    type = "file"
+#    url = "https://raw.githubusercontent.com/jamescherti/minimal-emacs.d/refs/heads/main/init.el"
+#    refreshPeriod = "168h"
 
-[".emacs.d/early-init.el"]
-    type = "file"
-    url	= "https://raw.githubusercontent.com/jamescherti/minimal-emacs.d/refs/heads/main/early-init.el"
-    refreshPeriod = "168h"
+#[".emacs.d/early-init.el"]
+#    type = "file"
+#    url	= "https://raw.githubusercontent.com/jamescherti/minimal-emacs.d/refs/heads/main/early-init.el"
+#    refreshPeriod = "168h"
 
 [".zsh/pure"]
     type = "git-repo"
