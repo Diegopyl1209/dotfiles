@@ -40,7 +40,7 @@ if [ -f "$SOURCE_DIR/installed-extensions.txt" ]; then
     echo "Checking and installing required GNOME extensions..."
 
     # Check for gnome-extensions-cli for easier installation
-    if command -v gnome-extensions &> /dev/null; then
+    if command -v gnome-extensions-cli &> /dev/null; then
         echo "Using gnome-extensions-cli for extension installation..."
 
         while IFS= read -r ext_id || [[ -n "$ext_id" ]]; do
@@ -51,7 +51,7 @@ if [ -f "$SOURCE_DIR/installed-extensions.txt" ]; then
             ext_id=$(echo "$ext_id" | xargs)
 
             echo "Installing extension: $ext_id"
-            gnome-extensions install "$ext_id" || log "Failed to install extension: $ext_id"
+            gnome-extensions-cli install "$ext_id" || log "Failed to install extension: $ext_id"
         done < "$SOURCE_DIR/installed-extensions.txt"
     else
         echo "You may need to manually install some extensions."
