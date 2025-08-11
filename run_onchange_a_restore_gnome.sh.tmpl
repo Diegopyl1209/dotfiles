@@ -34,32 +34,3 @@ if [ -f "$SOURCE_DIR/dconf/extension-settings.dconf" ]; then
     echo "Restoring extension settings..."
     dconf load /org/gnome/shell/extensions/ < "$SOURCE_DIR/dconf/extension-settings.dconf"
 fi
-
-
-if [ -f "$SOURCE_DIR/installed-extensions.txt" ]; then
-    echo "Checking and installing required GNOME extensions..."
-
-    # Check for gnome-extensions-cli for easier installation
-    if command -v gnome-extensions-cli &> /dev/null; then
-        echo "Using gnome-extensions-cli for extension installation..."
-
-        while IFS= read -r ext_id || [[ -n "$ext_id" ]]; do
-            # Skip empty or commented lines
-            [[ -z "$ext_id" || "$ext_id" =~ ^# ]] && continue
-
-            # Strip any whitespace
-            ext_id=$(echo "$ext_id" | xargs)
-
-            echo "Installing extension: $ext_id"
-            gnome-extensions-cli install "$ext_id" || log "Failed to install extension: $ext_id"
-        done < "$SOURCE_DIR/installed-extensions.txt"
-    else
-        echo "You may need to manually install some extensions."
-        echo "Extensions list is available at: $SOURCE_DIR/installed-extensions.txt"
-
-        # Remind user to check extensions.gnome.org
-        echo "For other extensions, please visit https://extensions.gnome.org"
-        echo "or use the Extensions app to install the extensions listed in:"
-        echo "$SOURCE_DIR/installed-extensions.txt"
-    fi
-fi
