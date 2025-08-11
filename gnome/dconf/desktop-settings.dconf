@@ -35,6 +35,7 @@ color-scheme='prefer-dark'
 cursor-theme='phinger-cursors-dark'
 gtk-theme='adw-gtk3'
 icon-theme='Gruvbox-Plus-Dark'
+toolkit-accessibility=false
 
 [notifications]
 application-children=['discord', 'emacs', 'alacritty', 'github-desktop', 'org-keepassxc-keepassxc']
