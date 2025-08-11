@@ -36,7 +36,7 @@ if [ -f "$SOURCE_DIR/dconf/extension-settings.dconf" ]; then
 fi
 
 
-if [ -f "$SOURCE_DIR/extensions/installed-extensions.txt" ]; then
+if [ -f "$SOURCE_DIR/installed-extensions.txt" ]; then
     echo "Checking and installing required GNOME extensions..."
 
     # Check for gnome-extensions-cli for easier installation
@@ -52,7 +52,7 @@ if [ -f "$SOURCE_DIR/extensions/installed-extensions.txt" ]; then
 
             echo "Installing extension: $ext_id"
             gnome-extensions-cli install "$ext_id" || log "Failed to install extension: $ext_id"
-        done < "$SOURCE_DIR/extensions/installed-extensions.txt"
+        done < "$SOURCE_DIR/installed-extensions.txt"
     else
         echo "You may need to manually install some extensions."
         echo "Extensions list is available at: $SOURCE_DIR/installed-extensions.txt"
