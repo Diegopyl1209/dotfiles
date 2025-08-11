@@ -1,8 +1,0 @@
-user-theme@gnome-shell-extensions.gcampax.github.com
-blur-my-shell@aunetx
-auto-move-windows@gnome-shell-extensions.gcampax.github.com
-launch-new-instance@gnome-shell-extensions.gcampax.github.com
-date-menu-formatter@marcinjakubowski.github.com
-dash-to-dock@micxgx.gmail.com
-Bluetooth-Battery-Meter@maniacx.github.com
-appmenu-is-back@fthx
