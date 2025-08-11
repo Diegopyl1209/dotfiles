@@ -45,7 +45,7 @@ gtk-theme='adw-gtk3'
 icon-theme='Gruvbox-Plus-Dark'
 
 [desktop/notifications]
-application-children=['discord', 'emacs', 'alacritty', 'github-desktop']
+application-children=['discord', 'emacs', 'alacritty', 'github-desktop', 'org-keepassxc-keepassxc']
 
 [desktop/notifications/application/alacritty]
 application-id='Alacritty.desktop'
@@ -58,6 +58,9 @@ application-id='emacs.desktop'
 
 [desktop/notifications/application/github-desktop]
 application-id='github-desktop.desktop'
+
+[desktop/notifications/application/org-keepassxc-keepassxc]
+application-id='org.keepassxc.KeePassXC.desktop'
 
 [desktop/wm/keybindings]
 close=['<Alt>q']
