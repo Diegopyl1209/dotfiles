@@ -1,0 +1,13 @@
+[/]
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']
+search=['<Super>d']
+
+[custom-keybindings/custom0]
+binding='<Super>Return'
+command='alacritty'
+name='Terminal'
+
+[custom-keybindings/custom1]
+binding='<Super>e'
+command='emacsclient -c'
+name='Emacs'

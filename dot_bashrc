@@ -17,6 +17,7 @@ fi
 
 # Put your fun stuff here.
 
+
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi

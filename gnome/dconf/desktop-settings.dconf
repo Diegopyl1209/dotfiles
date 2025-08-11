@@ -1,0 +1,67 @@
+[app-folders]
+folder-children=['Utilities', 'YaST', 'Pardus', '99933f3f-73c8-41ab-ac5e-7d5c48093032']
+
+[app-folders/folders/99933f3f-73c8-41ab-ac5e-7d5c48093032]
+apps=['org.gnome.Contacts.desktop', 'Gentoo-system-config-printer.desktop', 'cups.desktop', 'org.gnome.eog.desktop', 'assistant6-qttools-6.desktop', 'linguist6-qttools-6.desktop', 'qdbusviewer6-qttools-6.desktop', 'yelp.desktop', 'wpa_gui.desktop']
+name='Carpeta sin nombre'
+
+[app-folders/folders/Pardus]
+categories=['X-Pardus-Apps']
+name='X-Pardus-Apps.directory'
+translate=true
+
+[app-folders/folders/Utilities]
+apps=['org.freedesktop.GnomeAbrt.desktop', 'nm-connection-editor.desktop', 'org.gnome.baobab.desktop', 'org.gnome.Connections.desktop', 'org.gnome.DejaDup.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.Evince.desktop', 'org.gnome.FileRoller.desktop', 'org.gnome.font-viewer.desktop', 'org.gnome.Loupe.desktop', 'org.freedesktop.MalcontentControl.desktop', 'org.gnome.seahorse.Application.desktop', 'org.gnome.tweaks.desktop', 'org.gnome.Usage.desktop']
+categories=['X-GNOME-Utilities']
+name='X-GNOME-Utilities.directory'
+translate=true
+
+[app-folders/folders/YaST]
+categories=['X-SuSE-YaST']
+name='suse-yast.directory'
+translate=true
+
+[background]
+picture-options='zoom'
+picture-uri='file:///home/diegopyl/.config/background'
+picture-uri-dark='file:///home/diegopyl/.config/background'
+
+[input-sources]
+mru-sources=[('xkb', 'us')]
+sources=[('xkb', 'latam')]
+
+[interface]
+color-scheme='prefer-dark'
+cursor-theme='phinger-cursors-dark'
+gtk-theme='adw-gtk3'
+icon-theme='Gruvbox-Plus-Dark'
+
+[notifications]
+application-children=['discord', 'emacs', 'alacritty', 'github-desktop']
+
+[notifications/application/alacritty]
+application-id='Alacritty.desktop'
+
+[notifications/application/discord]
+application-id='discord.desktop'
+
+[notifications/application/emacs]
+application-id='emacs.desktop'
+
+[notifications/application/github-desktop]
+application-id='github-desktop.desktop'
+
+[wm/keybindings]
+close=['<Alt>q']
+move-to-workspace-1=['<Shift><Super>1']
+move-to-workspace-2=['<Shift><Super>2']
+move-to-workspace-3=['<Shift><Super>3']
+move-to-workspace-4=['<Shift><Super>4']
+switch-to-workspace-1=['<Super>1']
+switch-to-workspace-2=['<Super>2']
+switch-to-workspace-3=['<Super>3']
+switch-to-workspace-4=['<Super>4']
+
+[wm/preferences]
+num-workspaces=5
+resize-with-right-button=true
