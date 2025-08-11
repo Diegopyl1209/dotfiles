@@ -4,7 +4,6 @@
 BACKUP_DIR={{joinPath .chezmoi.sourceDir "/gnome"}}
 
 echo "Backing up specific GNOME settings"
-dconf dump /org/gnome/ >"$BACKUP_DIR/dconf/gnome-settings.dconf"
 dconf dump /org/gnome/desktop/ >"$BACKUP_DIR/dconf/desktop-settings.dconf"
 dconf dump /org/gnome/shell/ >"$BACKUP_DIR/dconf/shell-settings.dconf"
 dconf dump /org/gnome/settings-daemon/plugins/media-keys/ >"$BACKUP_DIR/dconf/keybindings.dconf"
