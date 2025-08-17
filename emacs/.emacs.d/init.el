@@ -71,7 +71,9 @@
   (split-height-threshold nil)
   (switch-to-buffer-obey-display-actions t)
   (tab-always-indent 'complete)
+  (tab-first-completion 'word-or-paren-or-punct)
   (tab-width 4)
+  (read-extended-command-predicate #'command-completion-default-include-p)
   (tab-bar-close-button-show nil)
   (tab-bar-new-button-show nil)
   (tab-bar-tab-hints t)
@@ -90,6 +92,17 @@
   (grep-find-ignored-directories
    '("SCCS" "RCS" "CVS" "MCVS" ".src" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}" "node_modules" "build" "dist"))
   (read-extended-command-predicate #'command-completion-default-include-p)
+  (left-fringe-width  8)
+  (right-fringe-width 8)
+  (indicate-buffer-boundaries nil)
+  (indicate-empty-lines nil)
+  (comment-multi-line t)
+  (comment-empty-lines t)
+  (fill-column 80)
+  (sentence-end-double-space nil)
+  (require-final-newline t)
+  (xref-show-definitions-function 'xref-show-definitions-completing-read)
+  (xref-show-xrefs-function 'xref-show-definitions-completing-read)
 
   :config
   (set-face-attribute 'default nil :family "JetBrainsMono Nerd Font" :height 100)
@@ -119,6 +132,11 @@
   (doom-themes-neotree-config)
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
+
+;;; SOLAIRE-MODE
+(use-package solaire-mode
+  :straight t
+  :init (solaire-global-mode +1))
 
 ;;; MODELINE
 (use-package mood-line
@@ -337,7 +355,11 @@ and restart Flymake to apply the changes."
   (show-paren-style 'mixed)
   (show-paren-context-when-offscreen t)) ;; show matches within window splits
 
-
+;;; UNDO-FU
+(use-package undo-fu
+  :straight t
+  :bind (("C-z" . 'undo-fu-only-undo)
+		 ("C-S-z" . 'undo-fu-only-redo)))
 
 ;;; ORG
 (use-package org
@@ -408,8 +430,15 @@ and restart Flymake to apply the changes."
   )
 
 ;; VTERM
+(defun my/vterm-right ()
+  "Open vterm in a window split to the right."
+  (interactive)
+  (let ((new-window (split-window-right)))
+	(select-window new-window)
+	(vterm)))
 (use-package vterm
-  :straight t)
+  :straight t
+  :bind (("C-c t" . my/vterm-right)))
 
 (provide 'init)
 ;;; init.el ends here
