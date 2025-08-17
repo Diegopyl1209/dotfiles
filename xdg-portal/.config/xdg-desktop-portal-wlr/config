@@ -1,0 +1,5 @@
+[screencast]
+output_name=HDMI-A-1
+max_fps=60
+chooser_type=dmenu
+chooser_cmd=wmenu
