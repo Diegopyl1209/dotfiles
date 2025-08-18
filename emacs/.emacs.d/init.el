@@ -23,120 +23,109 @@
 (straight-use-package 'use-package)
 ;;;(setq straight-use-package-by-default t)
 
+
 ;;; EMACS
 (use-package emacs
   :ensure nil
-  :bind (("M-o" . other-window)
-	 ("M-j" . duplicate-dwim)
-	 ("M-g r" . recentf)
-	 ("M-s g" . grep)
-	 ("M-s f" . find-name-dired)
-	 ("<escape>" . keyboard-escape-quit)
-	 ("C-z" . nil)
-	 ("C-x C-z" . nil)
-	 ("C-x C-k RET" . nil))
+  :bind(("M-j" . duplicate-dwin)
+	("M-g r" . recentf-open)
+	("M-s g" . grep)
+	("M-s f" . find-name-dired)
+	("C-z" . nil)
+	("C-x C-z" . nil)
+	("C-x C-k RET" . nil))
   :custom
-  (ad-has-redefining-advice 'accept)
   (delete-by-moving-to-trash t)
-  (display-line-numbers-width 3)
-  (display-line-numbers-widen t)
   (enable-recursive-minibuffers t)
   (find-ls-option '("-exec ls -ldh {} +" . "-ldh"))  ; find-dired results with human readable sizes
-  (frame-resize-pixelwise t)
-  (global-auto-revert-non-file-buffers t)
-  (help-window-select t)
   (history-lenght 300)
-  (inhibit-startup-message t)
-  ;;(initial-scratch-message "")
-  (ispell-dictionary "es")
-  (kill-do-not-save-duplicates t)
-  (create-lockfiles nil)
-  (make-backup-files nil)
-  (backup-inhibited t)
-  (ring-bell-function 'ignore)
-  (visible-bell nil)
-  (read-answer-short t)
-  (recentf-max-saved-items 300) ; default is 20
-  (recentf-max-menu-items 15)
-  (recentf-auto-cleanup (if (daemonp) 300 'never))
-  (recentf-exclude (list "^/\\(?:ssh\\|su\\|sudo\\)?:"))
-  (remote-file-name-inhibit-delete-by-moving-to-trash t)
-  (remote-file-name-inhibit-auto-save t)
-  (resize-mini-windows 'grow-only)
-  (scroll-conservatively 8)
-  (scroll-margin 5)
-  (save-place-file (expand-file-name "saveplace" user-emacs-directory))
-  (save-place-limit 600)
-  (split-width-threshold 170)     ; So vertical splits are preferred
-  (split-height-threshold nil)
-  (switch-to-buffer-obey-display-actions t)
-  (tab-always-indent 'complete)
-  (tab-first-completion 'word-or-paren-or-punct)
-  (tab-width 4)
-  (read-extended-command-predicate #'command-completion-default-include-p)
-  (tab-bar-close-button-show nil)
-  (tab-bar-new-button-show nil)
-  (tab-bar-tab-hints t)
-  (treesit-font-lock-level 4)
-  (truncate-lines t)
-  (undo-limit (* 13 160000))
-  (undo-strong-limit (* 13 240000))
-  (undo-outer-limit (* 13 24000000))
+  (use-short-answers t)
   (use-dialog-box nil)
   (use-file-dialog nil)
-  (use-short-answers t)
-  (window-combination-resize t)
-  (window-resize-pixelwise nil)
-  (xref-search-program 'ripgrep)
-  (grep-command "rg -nS --no-heading ")
-  (grep-find-ignored-directories
-   '("SCCS" "RCS" "CVS" "MCVS" ".src" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}" "node_modules" "build" "dist"))
-  (read-extended-command-predicate #'command-completion-default-include-p)
+  (inhibit-startup-message t)
+  ;;(initial-scratch-message "")
+  (create-lockfiles nil)
+  (make-backup-files nil)
+  (backup-directory-alist
+  `(("." . ,(expand-file-name "backup" user-emacs-directory))))
+  (tramp-backup-directory-alist backup-directory-alist)
+  (backup-by-copying t)
+  (delete-old-versions t)
+  (version-control t)
+  (kept-new-versions 5)
+  (kept-old-versions 5)
+  (vc-git-print-log-follow t)
+  (vc-make-backup-files nil)  ; Do not backup version controlled files
+  (vc-git-diff-switches '("--histogram"))
+  (auto-save-default nil)
+  (auto-save-no-message t)
+  (auto-save-include-big-deletions t)
+  (auto-save-list-file-prefix
+   (expand-file-name "autosave/" user-emacs-directory))
+  (tramp-auto-save-directory
+   (expand-file-name "tramp-autosave/" user-emacs-directory))
+  (kill-buffer-delete-auto-save-files t)
+  (kill-do-not-save-duplicates t)
+  (revert-without-query (list "."))
+  (auto-revert-stop-on-user-input nil)
+  (auto-revert-verbose t)
+  (global-auto-revert-non-file-buffers t)
+  (global-auto-revert-ignore-modes '(Buffer-menu-mode))
+  (recentf-max-saved-items 300) ; default is 20
+  (recentf-max-menu-items 15)
+  (recentf-auto-cleanup 'mode)
+  (recentf-exclude (list "^/\\(?:ssh\\|su\\|sudo\\)?:"))
+  (save-place-file (expand-file-name "saveplace" user-emacs-directory))
+  (save-place-limit 600)
+  (resize-mini-windows 'grow-only)
+  (window-divider-default-bottom-width 1)
+  (window-divider-default-places t)
+  (window-divider-default-right-width 1)
+  (redisplay-skip-fontification-on-input t)
+  (fast-but-imprecise-scrolling t)
+  (scroll-error-top-bottom t)
+  (scroll-preserve-screen-position t)
+  (scroll-conservatively 101)
   (left-fringe-width  8)
   (right-fringe-width 8)
-  (indicate-buffer-boundaries nil)
-  (indicate-empty-lines nil)
+  (word-wrap t)
+  (truncate-lines t)
+  (tab-width 4)
+  ;;(tab-always-indent 'complete)
+  ;;(tab-first-completion 'word-or-paren-or-punct)
+  (read-extended-command-predicate #'command-completion-default-include-p)
   (comment-multi-line t)
   (comment-empty-lines t)
   (fill-column 80)
   (sentence-end-double-space nil)
   (require-final-newline t)
+  (lazy-highlight-initial-delay 0)
   (xref-show-definitions-function 'xref-show-definitions-completing-read)
   (xref-show-xrefs-function 'xref-show-definitions-completing-read)
-
   :config
   (set-face-attribute 'default nil :family "JetBrainsMono Nerd Font" :height 100)
-
   (setq display-line-numbers-type 'relative)
   (add-hook 'prog-mode-hook #'display-line-numbers-mode)
-
   :init
   (global-auto-revert-mode 1)
-  (indent-tabs-mode -1)
+  (indent-tabs-mode nil)
   (recentf-mode 1)
   (repeat-mode 1)
   (savehist-mode 1)
   (save-place-mode 1)
   (winner-mode))
 
-
 ;;; THEME
 (use-package doom-themes
   :straight t
   :config
   (load-theme 'doom-gruvbox t)
-
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
   ;; Enable custom neotree theme (nerd-icons must be installed!)
   (doom-themes-neotree-config)
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
-
-;;; SOLAIRE-MODE
-(use-package solaire-mode
-  :straight t
-  :init (solaire-global-mode +1))
 
 ;;; MODELINE
 (use-package mood-line
@@ -165,7 +154,6 @@
   (ansi-color-for-compilation-mode t)
   :config
   (add-hook 'compilation-filter-hook #'ansi-color-compilation-filter))
-
 
 ;;; WINDOW
 (use-package window
@@ -198,20 +186,27 @@
 	  (window-height . 0.25)
 	  (side . bottom)
 	  (slot . 2))
+	 ("\\*\\(compilation\\)\\*"
+	  (display-buffer-below-selected)
+	  (window-height . 0.25))
+	 ("\\*\\(vterm\\)\\*"
+	  (display-buffer-in-direction)
+	  (direction . right)
+	  (window-width . 0.4))
 	 )))
+
+;;; ACE-WINDOW
+(use-package ace-window
+  :straight t
+  :bind ("M-o" . 'ace-window)
+  :config
+  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
 
 ;;; VERTICO
 (use-package vertico
   :straight t
   :init
   (vertico-mode))
-
-(use-package orderless
-  :straight t
-  :custom
-  (completion-styles '(orderless basic))
-  (completion-category-defaults nil)
-  (completion-category-overrides '((file (styles partial-completion)))))
 
 (use-package vertico-directory
   :after vertico
@@ -222,6 +217,14 @@
 			  ("M-DEL" . vertico-directory-delete-word))
   ;; Tidy shadowed file names
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
+
+;;; ORDERLESS
+(use-package orderless
+  :straight t
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-defaults nil)
+  (completion-category-overrides '((file (styles partial-completion)))))
 
 ;;; ISEARCH
 (use-package isearch
@@ -251,16 +254,6 @@
   :init
   (fset #'jsonrpc--log-event #'ignore)
 
-  (defun emacs-solo/eglot-setup ()
-	"Setup eglot mode with specific exclusions."
-	(unless (eq major-mode 'emacs-lisp-mode)
-	  (eglot-ensure)))
-
-  (add-hook 'prog-mode-hook #'emacs-solo/eglot-setup)
-
-  (with-eval-after-load 'eglot
-	(add-to-list 'eglot-server-programs '((ruby-mode ruby-ts-mode) "ruby-lsp")))
-
   :bind (:map
 		 eglot-mode-map
 		 ("C-c l a" . eglot-code-actions)
@@ -282,25 +275,34 @@
 			  ("C-c ! t" . toggle-flymake-diagnostics-at-eol))
   :custom
   (flymake-show-diagnostics-at-end-of-line nil)
-  ;; (flymake-show-diagnostics-at-end-of-line 'short)
+  ;;(flymake-show-diagnostics-at-end-of-line 'short)
   (flymake-indicator-type 'margins)
   (flymake-margin-indicators-string
    `((error "!" compilation-error)      ;; Alternatives: », E, W, i, !, ?)
 	 (warning "?" compilation-warning)
-	 (note "i" compilation-info)))
+	 (note "i" compilation-info))))
+
+;;; CORFU
+(use-package corfu
+  :straight t
+  :commands (corfu-mode global-corfu-mode)
+  :hook ((prog-mode . corfu-mode)
+		 (shell-mode . corfu-mode)
+		 (eshell-mode . corfu-mode))
+  :custom
+  (text-mode-ispell-word-completion nil)
   :config
-  ;; Define the toggle function
-  (defun toggle-flymake-diagnostics-at-eol ()
-	"Toggle the display of Flymake diagnostics at the end of the line
-and restart Flymake to apply the changes."
-	(interactive)
-	(setq flymake-show-diagnostics-at-end-of-line
-		  (not flymake-show-diagnostics-at-end-of-line))
-	(flymake-mode -1) ;; Disable Flymake
-	(flymake-mode 1)  ;; Re-enable Flymake
-	(message "Flymake diagnostics at end of line: %s"
-			 (if flymake-show-diagnostics-at-end-of-line
-				 "Enabled" "Disabled"))))
+  (global-corfu-mode))
+
+;;; CAPE
+(use-package cape
+  :straight t
+  :commands (cape-dabbrev cape-file cape-elisp-block)
+  :bind ("C-c p" . cape-prefix-map)
+  :init
+  (add-hook 'completion-at-point-functions #'cape-dabbrev)
+  (add-hook 'completion-at-point-functions #'cape-file)
+  (add-hook 'completion-at-point-functions #'cape-elisp-block))
 
 ;;; WHITESPACE
 (use-package whitespace
@@ -332,13 +334,8 @@ and restart Flymake to apply the changes."
 		'(read-only t intangible t cursor-intangible t face minibuffer-prompt))
   (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
 
-  ;; Keep minibuffer lines unwrapped, long lines like on M-y will be truncated
-  (add-hook 'minibuffer-setup-hook
-		  (lambda () (setq truncate-lines t)))
-
   (minibuffer-depth-indicate-mode 1)
   (minibuffer-electric-default-mode 1))
-
 
 ;;; ELEC_PAIR
 (use-package elec-pair
@@ -416,13 +413,6 @@ and restart Flymake to apply the changes."
 	 ("YouTube" . [simple-query "www.youtube.com/feed/subscriptions" "www.youtube.com/rnesults?search_query=" ""])
 	 ("ChatGPT" . [simple-query "https://chatgpt.com" "https://chatgpt.com/?q=" ""]))))
 
-;;; ACE-WINDOW
-(use-package ace-window
-  :straight t
-  :config
-  (global-set-key (kbd "M-o") 'ace-window)
-  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
-
 ;;; NEOTREE
 (use-package neotree
   :straight t
@@ -430,15 +420,9 @@ and restart Flymake to apply the changes."
   )
 
 ;; VTERM
-(defun my/vterm-right ()
-  "Open vterm in a window split to the right."
-  (interactive)
-  (let ((new-window (split-window-right)))
-	(select-window new-window)
-	(vterm)))
 (use-package vterm
   :straight t
-  :bind (("C-c t" . my/vterm-right)))
+  :bind (("C-c t" . vterm)))
 
 (provide 'init)
 ;;; init.el ends here
