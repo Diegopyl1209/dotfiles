@@ -17,7 +17,7 @@ rivercarro -outer-gaps 3 -per-tag &
 
 
 riverctl map normal Super+Shift Return spawn "alacritty"
-riverctl map normal Super p spawn "wmenu-run"
+riverctl map normal Super p spawn "wmenu-run -N 202020 -n d5c4a1 -S 504945 -s d5c4a1"
 riverctl map normal Super+Shift C close
 riverctl map normal Super+Shift Q exit
 
@@ -32,7 +32,7 @@ riverctl map normal Super Period focus-output next
 riverctl map normal Super Comma focus-output previous
 riverctl map normal Super+Shift Period send-to-output next
 riverctl map normal Super+Shift Comma send-to-output previous
-riverctl map normal Super+Shift Return zoom
+riverctl map normal Super Return zoom
 
 riverctl map -repeat normal Super H send-layout-cmd rivercarro "main-ratio -0.01"
 riverctl map -repeat normal Super L send-layout-cmd rivercarro "main-ratio +0.01"
@@ -89,11 +89,11 @@ riverctl focus-follows-cursor normal
 riverctl set-cursor-warp on-focus-change
 riverctl keyboard-layout -options caps:escape latam
 
-riverctl border-color-focused 0xe8d8b0
-riverctl border-color-unfocused 0x1d2021
-riverctl border-width 0
+riverctl border-color-focused 0x458588
+riverctl border-color-unfocused 0xa89984ff
+riverctl border-width 2
 riverctl default-attach-mode bottom
-
+riverctl xcursor-theme "phinger-cursors-dark"
 
 rule-add -app-id 'Alacritty*' float
 riverctl rule-add -app-id 'imv*' float
@@ -103,11 +103,11 @@ riverctl rule-add -title 'Extension: *' -app-id 'librewolf' float
 # riverctl rule-add -title '*Bitwarden*' -app-id 'librewolf' float
 
 
-scratch_tag=$((1 << 20 ))
-riverctl map normal Super P toggle-focused-tags ${scratch_tag}
-riverctl map normal Super+Shift P set-view-tags ${scratch_tag}
-all_but_scratch_tag=$(( ((1 << 32) - 1) ^ $scratch_tag ))
-riverctl spawn-tagmask ${all_but_scratch_tag}
+#scratch_tag=$((1 << 20 ))
+#riverctl map normal Super P toggle-focused-tags ${scratch_tag}
+#riverctl map normal Super+Shift P set-view-tags ${scratch_tag}
+#all_but_scratch_tag=$(( ((1 << 32) - 1) ^ $scratch_tag ))
+#riverctl spawn-tagmask ${all_but_scratch_tag}
 
 riverctl declare-mode passthrough
 riverctl map normal Super F11 enter-mode passthrough
@@ -118,7 +118,7 @@ riverctl map passthrough Super F11 enter-mode normal
 for mode in normal locked
 do
 	riverctl map $mode None XF86AudioRaiseVolume  spawn 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+'
-	riverctl map $mode None XF86AudioLowerVolume  spawn 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-'
+	riverctl map $mode None XF86AudioLowerVolume  spawn 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-'
 	riverctl map $mode None XF86AudioMute         spawn 'pamixer --toggle-mute'
 
 	riverctl map $mode None XF86AudioMedia spawn 'playerctl play-pause'
