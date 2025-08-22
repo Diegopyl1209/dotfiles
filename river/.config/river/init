@@ -5,7 +5,7 @@
 #systemctl --user restart xdg-desktop-portal
 
 riverctl spawn "way-displays"
-riverctl spawn "slstatus -s | dam"
+riverctl spawn "clstatus | dam"
 riverctl spawn "swaybg -i ~/.config/background -m fill"
 riverctl spawn "mako"
 riverctl spawn "dbus-update-activation-environment --systemd WAYLAND_DISPLAY"
