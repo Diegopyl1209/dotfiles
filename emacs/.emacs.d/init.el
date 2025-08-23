@@ -90,7 +90,7 @@
   (right-fringe-width 8)
   (word-wrap t)
   (truncate-lines t)
-  (tab-width 4)
+  (tab-width 2)
   ;;(tab-always-indent 'complete)
   ;;(tab-first-completion 'word-or-paren-or-punct)
   (read-extended-command-predicate #'command-completion-default-include-p)
@@ -104,7 +104,7 @@
   (xref-show-xrefs-function 'xref-show-definitions-completing-read)
   :config
   (set-face-attribute 'default nil :family "JetBrainsMono Nerd Font" :height 100)
-  (setq display-line-numbers-type 'relative)
+  (setq-default display-line-numbers-type 'relative)
   (add-hook 'prog-mode-hook #'display-line-numbers-mode)
   :init
   (global-auto-revert-mode 1)
