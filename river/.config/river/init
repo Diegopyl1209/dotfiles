@@ -4,10 +4,11 @@
 #dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
 #systemctl --user restart xdg-desktop-portal
 
-riverctl spawn "way-displays"
+#riverctl spawn "way-displays"
 riverctl spawn "clstatus | dam"
-riverctl spawn "swaybg -i ~/.config/background -m fill"
+riverctl spawn "swaybg -i ~/Imágenes/Wallpapers/samurai.jpg -m fill"
 riverctl spawn "mako"
+riverctl spawn "/usr/libexec/polkit-mate-authentication-agent-1"
 riverctl spawn "dbus-update-activation-environment --systemd WAYLAND_DISPLAY"
 riverctl spawn "dbus-update-activation-environment --systemd XDG_CURRENT_DESKTOP=river"
 
@@ -16,7 +17,7 @@ riverctl default-layout rivercarro
 rivercarro -outer-gaps 3 -per-tag &
 
 
-riverctl map normal Super+Shift Return spawn "alacritty"
+riverctl map normal Super+Shift Return spawn "kitty"
 riverctl map normal Super p spawn "wmenu-run -N 202020 -n d5c4a1 -S 504945 -s d5c4a1"
 riverctl map normal Super+Shift C close
 riverctl map normal Super+Shift Q exit
@@ -62,6 +63,12 @@ riverctl map-pointer normal Super BTN_LEFT move-view
 riverctl map-pointer normal Super BTN_RIGHT resize-view
 riverctl map-pointer normal Super BTN_MIDDLE toggle-float
 
+
+# Screenshot display and save to $HOME/Pictures
+riverctl map normal none Print spawn "grim $HOME/Pictures/$(date +'%s.png')"
+# Screenshot area and save to $HOME/Pictures
+riverctl map normal Control Print spawn 'grim -g "$(slurp)" $HOME/Pictures/$(date +'%s.png')'
+
 for i in $(seq 1 9)
 do
 	tags=$((1 << ($i - 1)))
@@ -86,7 +93,7 @@ riverctl map normal Super+Shift 0 set-view-tags $all_tags
 
 riverctl set-repeat 75 300
 riverctl focus-follows-cursor normal
-riverctl set-cursor-warp on-focus-change
+riverctl set-cursor-warp normal
 riverctl keyboard-layout -options caps:escape latam
 
 riverctl border-color-focused 0x458588
@@ -95,7 +102,7 @@ riverctl border-width 2
 riverctl default-attach-mode bottom
 riverctl xcursor-theme "phinger-cursors-dark"
 
-rule-add -app-id 'Alacritty*' float
+#riverctl rule-add -app-id 'kitty' float
 riverctl rule-add -app-id 'imv*' float
 riverctl rule-add -app-id "bar" csd
 riverctl rule-add -title 'Export Image*' -app-id 'gimp' float
