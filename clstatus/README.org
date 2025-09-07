@@ -1,0 +1,63 @@
+#+TITLE: clstatus
+#+AUTHOR: Diego Peña y Lillo
+#+LANGUAGE: en
+
+A small C program to display system status information in the bar of *dwm* (via *X11*) or in the *dwl* bar patch (via stdout).
+It currently shows volume and date/time.
+
+[[./aaaa.png]]
+
+** Built-in modules:
+- Volume (via PulseAudio).
+- Date and time.
+
+** Dependencies
+- gcc or clang.
+- ~pthread~.
+- ~libpulse~ (PulseAudio).
+- ~X11~ (only if compiled with X11 support).
+
+** Building
+By default it builds for Wayland (stdout).
+To enable *X11 support*, open the Makefile and uncomment these two lines:
+
+#+BEGIN_SRC make
+#CFLAGS += $(shell pkg-config --cflags x11) -DX11
+#LDFLAGS += $(shell pkg-config --libs x11)
+#+END_SRC
+
+After uncommenting, build with:
+
+#+BEGIN_SRC shell
+make
+#+END_SRC
+
+** Installation
+#+BEGIN_SRC shell
+make install
+#+END_SRC
+
+This will install the binary into =/usr/local/bin/clstatus= (you can change the ~PREFIX~ in the Makefile).
+
+** Usage
+- In *dwm* (X11):
+  clstatus updates the root window name, which dwm displays in the bar.
+- In *dwl*:
+  clstatus writes the status to stdout, which the bar patch for dwl reads as input.
+
+Example:
+#+BEGIN_SRC shell
+clstatus | dwl
+#+END_SRC
+
+** Configuration
+Configuration is embedded in the source code inside the ~args[]~ array:
+
+#+BEGIN_SRC c
+static const struct arg args[] = {
+  {volume, "Vol: %d%% |"},
+  {datetime, " %a %d %b %H:%M"}
+};
+#+END_SRC
+
+You can add or modify modules by editing this array and recompiling.
