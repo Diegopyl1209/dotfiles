@@ -1,0 +1,19 @@
+sort=-time
+layer=overlay
+background-color=#202020
+border-color=#7daea3
+text-color=#ddc7a1
+progress-color=over #504945
+width=300
+height=110
+border-size=2
+icons=0
+max-icon-size=64
+default-timeout=5000
+ignore-timeout=1
+
+[urgency=low]
+text-color=#d8a657
+
+[urgency=high]
+text-color=#ea6962
