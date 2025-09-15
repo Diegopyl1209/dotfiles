@@ -1,5 +1,8 @@
 ;; init.el -- -*- lexical-binding: t; -*-
 
+;;; COMMENTARY:
+
+;;this is my Emacs's config do whatever you want with it.
 
 ;;; CODE:
 
@@ -26,94 +29,95 @@
 
 ;;; EMACS
 (use-package emacs
-	:ensure nil
-	:bind(("M-j" . duplicate-dwin)
+  :ensure nil
+  :bind(("M-j" . duplicate-dwin)
 	("M-g r" . recentf-open)
 	("M-s g" . grep)
 	("M-s f" . find-name-dired)
 	("C-z" . nil)
 	("C-x C-z" . nil)
 	("C-x C-k RET" . nil))
-	:custom
-	(delete-by-moving-to-trash t)
-	(enable-recursive-minibuffers t)
-	(find-ls-option '("-exec ls -ldh {} +" . "-ldh"))  ; find-dired results with human readable sizes
-	(history-lenght 300)
-	(use-short-answers t)
-	(use-dialog-box nil)
-	(use-file-dialog nil)
-	(inhibit-startup-message t)
-	;;(initial-scratch-message "")
-	(create-lockfiles nil)
-	(make-backup-files nil)
-	(backup-directory-alist
-	`(("." . ,(expand-file-name "backup" user-emacs-directory))))
-	(tramp-backup-directory-alist backup-directory-alist)
-	(backup-by-copying t)
-	(delete-old-versions t)
-	(version-control t)
-	(kept-new-versions 5)
-	(kept-old-versions 5)
-	(vc-git-print-log-follow t)
-	(vc-make-backup-files nil)  ; Do not backup version controlled files
-	(vc-git-diff-switches '("--histogram"))
-	(auto-save-default nil)
-	(auto-save-no-message t)
-	(auto-save-include-big-deletions t)
-	(auto-save-list-file-prefix
-	 (expand-file-name "autosave/" user-emacs-directory))
-	(tramp-auto-save-directory
-	 (expand-file-name "tramp-autosave/" user-emacs-directory))
-	(kill-buffer-delete-auto-save-files t)
-	(kill-do-not-save-duplicates t)
-	(revert-without-query (list "."))
-	(auto-revert-stop-on-user-input nil)
-	(auto-revert-verbose t)
-	(global-auto-revert-non-file-buffers t)
-	(global-auto-revert-ignore-modes '(Buffer-menu-mode))
-	(recentf-max-saved-items 300) ; default is 20
-	(recentf-max-menu-items 15)
-	(recentf-auto-cleanup 'mode)
-	(recentf-exclude (list "^/\\(?:ssh\\|su\\|sudo\\)?:"))
-	(save-place-file (expand-file-name "saveplace" user-emacs-directory))
-	(save-place-limit 600)
-	(resize-mini-windows 'grow-only)
-	(window-divider-default-bottom-width 1)
-	(window-divider-default-places t)
-	(window-divider-default-right-width 1)
-	(redisplay-skip-fontification-on-input t)
-	(fast-but-imprecise-scrolling t)
-	(scroll-error-top-bottom t)
-	(scroll-preserve-screen-position t)
-	(scroll-conservatively 101)
-	(left-fringe-width  8)
-	(right-fringe-width 8)
-	(word-wrap t)
-	(truncate-lines t)
-	;;(tab-width 2)
-	;;(tab-always-indent 'complete)
-	;;(tab-first-completion 'word-or-paren-or-punct)
-	(read-extended-command-predicate #'command-completion-default-include-p)
-	(comment-multi-line t)
-	(comment-empty-lines t)
-	(fill-column 80)
-	(sentence-end-double-space nil)
-	(require-final-newline t)
-	(lazy-highlight-initial-delay 0)
-	(xref-show-definitions-function 'xref-show-definitions-completing-read)
-	(xref-show-xrefs-function 'xref-show-definitions-completing-read)
-	:config
-	(set-face-attribute 'default nil :family "JetBrainsMono Nerd Font" :height 100)
-	(setq-default display-line-numbers-type 'relative)
-	(add-hook 'prog-mode-hook #'display-line-numbers-mode)
-	:init
-	(global-auto-revert-mode 1)
-	(indent-tabs-mode nil)
-	(recentf-mode 1)
-	(repeat-mode 1)
-	(savehist-mode 1)
-	(save-place-mode 1)
-	(winner-mode))
+  :custom
+  (delete-by-moving-to-trash t)
+  (enable-recursive-minibuffers t)
+  (find-ls-option '("-exec ls -ldh {} +" . "-ldh"))  ; find-dired results with human readable sizes
+  (history-lenght 300)
+  (use-short-answers t)
+  (use-dialog-box nil)
+  (use-file-dialog nil)
+  (inhibit-startup-message t)
+  (create-lockfiles nil)
+  (make-backup-files t)
+  (backup-directory-alist
+   `(("." . ,(expand-file-name "backup" user-emacs-directory))))
+  (tramp-backup-directory-alist backup-directory-alist)
+  (backup-by-copying t)
+  (delete-old-versions t)
+  (version-control t)
+  (kept-new-versions 5)
+  (kept-old-versions 5)
+  (vc-git-print-log-follow t)
+  (vc-make-backup-files nil)  ; Do not backup version controlled files
+  (vc-git-diff-switches '("--histogram"))
+  (auto-save-default t)
+  (auto-save-interval 300)
+  (auto-save-timeout 30)
+  (auto-save-no-message t)
+  (auto-save-include-big-deletions t)
+  (auto-save-list-file-prefix
+   (expand-file-name "autosave/" user-emacs-directory))
+  (tramp-auto-save-directory
+   (expand-file-name "tramp-autosave/" user-emacs-directory))
+  (kill-buffer-delete-auto-save-files t)
+  (kill-do-not-save-duplicates t)
+  (revert-without-query (list "."))
+  (auto-revert-stop-on-user-input nil)
+  (auto-revert-verbose t)
+  (global-auto-revert-non-file-buffers t)
+  (global-auto-revert-ignore-modes '(Buffer-menu-mode))
+  (recentf-max-saved-items 300) ; default is 20
+  (recentf-max-menu-items 15)
+  (recentf-auto-cleanup 'mode)
+  (recentf-exclude (list "^/\\(?:ssh\\|su\\|sudo\\)?:"))
+  (save-place-file (expand-file-name "saveplace" user-emacs-directory))
+  (save-place-limit 600)
+  (resize-mini-windows 'grow-only)
+  (window-divider-default-bottom-width 1)
+  (window-divider-default-places t)
+  (window-divider-default-right-width 1)
+  (redisplay-skip-fontification-on-input t)
+  (fast-but-imprecise-scrolling t)
+  (scroll-error-top-bottom t)
+  (scroll-preserve-screen-position t)
+  (scroll-conservatively 101)
+  (left-fringe-width  8)
+  (right-fringe-width 8)
+  (word-wrap t)
+  (truncate-lines t)
+  (tab-width 4)
+  (c-basic-offset tab-width)
+  (cperl-indent-level tab-width)
+  (read-extended-command-predicate #'command-completion-default-include-p)
+  (comment-multi-line t)
+  (comment-empty-lines t)
+  (fill-column 80)
+  (sentence-end-double-space nil)
+  (require-final-newline t)
+  (lazy-highlight-initial-delay 0)
+  (xref-show-definitions-function 'xref-show-definitions-completing-read)
+  (xref-show-xrefs-function 'xref-show-definitions-completing-read)
+
+  :config
+  (set-face-attribute 'default nil :family "JetBrainsMono Nerd Font" :height 100)
+  (setq-default display-line-numbers-type 'relative)
+  (add-hook 'prog-mode-hook #'display-line-numbers-mode)
+
+  :init
+  (global-auto-revert-mode 1)
+  (recentf-mode 1)
+  (repeat-mode 1)
+  (savehist-mode 1)
+  (save-place-mode 1))
 
 ;;; THEME
 (use-package doom-themes
@@ -128,13 +132,9 @@
 	(doom-themes-org-config))
 
 ;;; MODELINE
-(use-package mood-line
-	:straight t
-	:config
-	(mood-line-mode)
-
-	:custom
-	(mood-line-glyph-alist mood-line-glyphs-fira-code))
+;; (use-package doom-modeline
+;;   :straight t
+;;   :init (doom-modeline-mode 1))
 
 ;;; NERDICONS
 (use-package nerd-icons
@@ -203,20 +203,32 @@
 	(setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
 
 ;;; VERTICO
-(use-package vertico
-	:straight t
-	:init
-	(vertico-mode))
+;; (use-package vertico
+;;	:straight t
+;;	:init
+;;	(vertico-mode))
+;;
+;; (use-package vertico-directory
+;;	:after vertico
+;;	:ensure nil
+;;	:bind (:map vertico-map
+;;				("RET" . vertico-directory-enter)
+;;				("DEL" . vertico-directory-delete-char)
+;;				("M-DEL" . vertico-directory-delete-word))
+;;	;; Tidy shadowed file names
+;;	:hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
 
-(use-package vertico-directory
-	:after vertico
-	:ensure nil
-	:bind (:map vertico-map
-				("RET" . vertico-directory-enter)
-				("DEL" . vertico-directory-delete-char)
-				("M-DEL" . vertico-directory-delete-word))
-	;; Tidy shadowed file names
-	:hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
+;;; IDO
+(use-package ido
+  :ensure nil
+  :init
+  (ido-mode 1)
+  (ido-everywhere 1))
+
+(use-package ido-completing-read+
+  :straight t
+  :init
+  (ido-ubiquitous-mode 1))
 
 ;;; ORDERLESS
 (use-package orderless
@@ -261,6 +273,20 @@
 		 ("C-c l r" . eglot-rename)
 		 ("C-c l f" . eglot-format)))
 
+;;; LSP-MODE
+(use-package lsp-mode
+  :straight t
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  :commands lsp
+  :custom
+  (lsp-modeline-diagnostics-enable nil)
+  (lsp-enable-on-type-formatting nil)
+  (lsp-signature-render-documentation nil)
+  (lsp-enable-symbol-highlighting nil)
+  (lsp-lens-enable nil)
+  (lsp-headerline-breadcrumb-enable nil))
+
 ;;; FLYMAKE
 (use-package flymake
 	:ensure nil
@@ -276,11 +302,12 @@
 	:custom
 	(flymake-show-diagnostics-at-end-of-line nil)
 	;;(flymake-show-diagnostics-at-end-of-line 'short)
-	(flymake-indicator-type 'margins)
-	(flymake-margin-indicators-string
-	 `((error "!" compilation-error)      ;; Alternatives: », E, W, i, !, ?)
-	 (warning "?" compilation-warning)
-	 (note "i" compilation-info))))
+	(flymake-indicator-type 'fringes)
+	;; (flymake-margin-indicators-string
+	;;  `((error "!" compilation-error)
+	;;  (warning "?" compilation-warning)
+	;;  (note "i" compilation-info))))
+	)
 
 ;;; CORFU
 (use-package corfu
@@ -349,7 +376,6 @@
 	:hook (after-init . show-paren-mode)
 	:custom
 	(show-paren-delay 0)
-	(show-paren-style 'mixed)
 	(show-paren-context-when-offscreen t)) ;; show matches within window splits
 
 ;;; UNDO-FU
@@ -400,18 +426,6 @@
 	(setq which-key-idle-secondary-delay 0.25)
 	(setq which-key-add-column-padding 1)
 	(setq which-key-max-description-length 40))
-
-;;; WEBJUMP
-(use-package webjump
-	:defer t
-	:ensure nil
-	:bind ("C-x /" . webjump)
-	:custom
-	(webjump-sites
-	 '(("DuckDuckGo" . [simple-query "www.duckduckgo.com" "www.duckduckgo.com/?q=" ""])
-	 ("Google" . [simple-query "www.google.com" "www.google.com/search?q=" ""])
-	 ("YouTube" . [simple-query "www.youtube.com/feed/subscriptions" "www.youtube.com/rnesults?search_query=" ""])
-	 ("ChatGPT" . [simple-query "https://chatgpt.com" "https://chatgpt.com/?q=" ""]))))
 
 ;;; NEOTREE
 (use-package neotree
