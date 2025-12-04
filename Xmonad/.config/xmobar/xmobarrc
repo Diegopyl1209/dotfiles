@@ -1,0 +1,14 @@
+Config { font = "Iosevka Nerd Font 10"
+       , bgColor = "#202020"
+       , fgColor = "#eeeeee"
+       , position = Top
+       , sepChar = "%"
+       , commands = [ Run XMonadLog
+       		, Run Cpu ["-L","3","-H","50","--normal","#a9b665","--high","red"] 10
+		, Run Date "%A %b %d %l:%M %p" "date" 10
+		, Run Volume "default" "Master" ["--template","Vol: <volume>% <status>", "--", "-C","#a9b665"] 10
+		, Run UnsafeXMonadLog
+		]
+       , template = "%UnsafeXMonadLog%}{%default:Master% | %cpu% | %date% "
+       }
+
