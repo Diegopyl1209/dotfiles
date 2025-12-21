@@ -15,3 +15,4 @@ set smartcase
 syntax on
 
 colorscheme habamax
+
