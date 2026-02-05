@@ -1,6 +1,7 @@
 ;;; early-init.el --- Emacs config -*- lexical-binding: t -*-
 
-(setq package-enable-at-startup nil)
+(setq native-comp-async-report-warnings-errors 'silent)
+(setq byte-compile-warnings nil)
 
 (setq gc-cons-threshold most-positive-fixnum
 	  gc-cons-percentage 0.6
@@ -10,9 +11,6 @@
 	  frame-inhibit-implied-resize t
 	  frame-title-format '("Emacs"))
 
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
-(tooltip-mode -1)
+(setq default-frame-alist '((width . 200) (height . 60)))
 
 (setq inhibit-startup-message t)
