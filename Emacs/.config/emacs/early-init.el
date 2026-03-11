@@ -11,6 +11,6 @@
 	  frame-inhibit-implied-resize t
 	  frame-title-format '("Emacs"))
 
-(setq default-frame-alist '((width . 200) (height . 60)))
+(setq default-frame-alist '((width . 200) (height . 55)))
 
 (setq inhibit-startup-message t)

@@ -57,6 +57,7 @@
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 
+
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (unless (file-exists-p custom-file)
   (with-temp-buffer
@@ -80,28 +81,28 @@
   :init
   (load-theme 'doom-gruvbox t))
 
-(use-package mood-line
-  :ensure t
-  :init
-  (mood-line-mode 1)
+;; (use-package mood-line
+;;   :ensure t
+;;   :init
+;;   (mood-line-mode 1)
 
-  :config
-  (setq mood-line-format
-   '(("┃ " (mood-line-segment-modal) " "
-      (or (mood-line-segment-buffer-status) " ") " "
-      (mood-line-segment-buffer-name) "  "
-      (mood-line-segment-anzu) "  "
-      (mood-line-segment-multiple-cursors) "  "
-      (mood-line-segment-cursor-position) " "
-      (mood-line-segment-scroll) "")
+;;   :config
+;;   (setq mood-line-format
+;;    '(("┃ " (mood-line-segment-modal) " "
+;;       (or (mood-line-segment-buffer-status) " ") " "
+;;       (mood-line-segment-buffer-name) "  "
+;;       (mood-line-segment-anzu) "  "
+;;       (mood-line-segment-multiple-cursors) "  "
+;;       (mood-line-segment-cursor-position) " "
+;;       (mood-line-segment-scroll) "")
 	 
-     ((mood-line-segment-vc) "  "
-      (mood-line-segment-major-mode) "  "
-      (mood-line-segment-misc-info) "  "
-      (mood-line-segment-checker) "  "
-      (mood-line-segment-process) "  ")))
+;;      ((mood-line-segment-vc) "  "
+;;       (mood-line-segment-major-mode) "  "
+;;       (mood-line-segment-misc-info) "  "
+;;       (mood-line-segment-checker) "  "
+;;       (mood-line-segment-process) "  ")))
   
-  (setq mood-line-glyph-alist mood-line-glyphs-fira-code))
+;;   (setq mood-line-glyph-alist mood-line-glyphs-fira-code))
 
 (use-package which-key
   :ensure t
@@ -154,6 +155,11 @@
   (add-hook 'completion-at-point-functions #'cape-elisp-block)
   (add-hook 'completion-at-point-functions #'cape-tex))
 
+;; (use-package flycheck
+;;   :ensure t
+;;   :init
+;;   (global-flycheck-mode))
+
 (use-package lsp-mode
   :ensure t
   :init
@@ -167,3 +173,6 @@
   (lsp-lens-enable nil)
   (lsp-headerline-breadcrumb-enable nil))
 
+(use-package rust-mode
+  :ensure t
+  :mode ("\\.rs\\'" . rust-mode))
