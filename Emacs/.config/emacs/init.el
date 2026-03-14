@@ -49,6 +49,7 @@
   
   :hook
   (prog-mode-hook . display-line-numbers-mode)
+  (prog-mode-hook . subword-mode)
   (text-mode-hook . display-line-numbers-mode))
 
 
@@ -176,3 +177,6 @@
 (use-package rust-mode
   :ensure t
   :mode ("\\.rs\\'" . rust-mode))
+
+(use-package qml-mode
+  :ensure t)
