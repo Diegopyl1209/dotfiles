@@ -1,0 +1,12 @@
+\[general]
+import = [
+    "~/.config/alacritty/themes/gruvbox_dark.toml"
+]
+
+[window]
+decorations_theme_variant = "Dark"
+padding = {x = 12,y = 12}
+
+[font]
+normal.family = "JetbrainsMono Nerd Font"
+size = 11.0
