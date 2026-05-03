@@ -1,0 +1,115 @@
+// -*- mode: jsonc -*-
+{
+    // "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 22, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 4,
+    "modules-left": [
+        "hyprland/workspaces",
+    ],
+    // "modules-center": [
+    //     "hyprland/window"
+    // ],
+    "modules-right": [
+        //"idle_inhibitor",
+        //"pulseaudio",
+        "privacy",
+        "memory",
+        "backlight",
+        "custom/separator", 
+        "clock",
+        "custom/separator",
+        "tray",
+    ],
+    "hyprland/workspaces": {
+        "persistent-workspaces": {
+             "*": 5,
+         }
+     },
+     "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": " ",
+            "deactivated": " "
+        }
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10,
+        // "icons": {
+        //   "blueman": "bluetooth",
+        //   "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
+        // }
+    },
+    "clock": {
+        // "timezone": "Chile/Continental",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%d-%m-%Y}",
+        "format": "{:%a, %b %d - %I:%M %p}"
+    },
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "{}% "
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{percent}% {icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-full": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "pulseaudio": {
+        "format": "vol {volume}%",
+        "format-muted": "vol off",
+        "on-click": "pavucontrol"
+    },
+    "privacy": {
+        "icon-spacing": 12,
+        "icon-size": 14,
+        "transition-duration": 250,
+        "modules": [
+            {
+                "type": "screenshare",
+                "tooltip": true,
+                "tooltip-icon-size": 24
+            },
+            {
+                "type": "audio-in",
+                "tooltip": true,
+                "tooltip-icon-size": 12
+            }
+        ],
+        "ignore-monitor": true,
+        "ignore": [
+            {
+                "type": "audio-in",
+                "name": "cava"
+            }
+            // {
+            //     "type": "screenshare",
+            //     "name": "obs"
+            // }
+        ]
+    },
+    "custom/separator": {
+        "format": "|",
+    }
+
+}

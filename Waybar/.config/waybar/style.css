@@ -1,0 +1,74 @@
+@define-color bg #1d2021;
+@define-color bg0_hard #1b1b1b;
+@define-color fg #ebdbb2;
+
+@define-color green #b8bb26;
+@define-color yellow #fabd2f;
+@define-color red #fb4934;
+@define-color blue #83a598;
+@define-color gray #928374;
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 12px;
+    min-height: 0;
+}
+
+window#waybar {
+    box-shadow: none;
+    background: @bg0_hard;
+    color: @fg;
+}
+
+#workspaces button {
+    color: @gray;
+    border-bottom: 2px solid transparent;
+    padding: 0 6px;
+}
+
+#workspaces button:hover {
+    color: @fg;
+    background: rgba(235, 219, 178, 0.1);
+}
+
+#workspaces button.active {
+    color: @yellow;
+    border-bottom: 2px solid @yellow;
+}
+
+#workspaces button.empty {
+    color: #504945;
+}
+
+#clock {
+    padding: 0 6px;
+    border-bottom: 2px solid @gray;
+}
+
+#memory {
+    padding: 0 6px;
+    border-bottom: 2px solid @green;
+}
+
+#tray {
+    padding: 0 12px 0 0;
+}
+
+#custom-separator {
+    padding: 0 6px;
+}
+
+#privacy {
+    padding: 0 12px;
+}
+
+#privacy-item.screenshare {
+    color: @blue;
+}
+
+#privacy-item.audio-in {
+    color: @red;
+}
