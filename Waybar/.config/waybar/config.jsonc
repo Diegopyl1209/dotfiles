@@ -2,7 +2,7 @@
 {
     // "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 22, // Waybar height (to be removed for auto height)
+    "height": 25, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 4,
     "modules-left": [
@@ -53,7 +53,7 @@
         "tooltip": false
     },
     "memory": {
-        "format": "{}% "
+        "format": "Ram: {used:0.1f}G/{total:0.1f}G"
     },
     "backlight": {
         // "device": "acpi_video1",
