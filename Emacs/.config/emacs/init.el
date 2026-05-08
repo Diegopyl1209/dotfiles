@@ -180,3 +180,7 @@
 
 (use-package qml-mode
   :ensure t)
+
+(use-package zig-ts-mode
+  :ensure t
+  :mode ("\\.zig\\'" . zig-mode))
