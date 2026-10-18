@@ -38,8 +38,8 @@
   (setq delete-old-versions t)  
   (setq auto-save-default nil)
   (setq-default indent-tabs-mode nil)
-  (setq-default tab-width 4)
-  (setq standard-indent 4)
+  (setq-default tab-width 2)
+  (setq standard-indent 2)
   (setq c-basic-offset tab-width)
   (setq enable-recursive-minibuffers t)
   (setq read-extended-command-predicate #'command-completion-default-include-p)
@@ -183,4 +183,4 @@
 
 (use-package zig-ts-mode
   :ensure t
-  :mode ("\\.zig\\'" . zig-mode))
+  :mode ("\\.zig\\'" . zig-ts-mode))
