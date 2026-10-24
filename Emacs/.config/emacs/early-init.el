@@ -1,4 +1,7 @@
-;;; early-init.el --- Emacs config -*- lexical-binding: t -*-
+;;; early-init.el --- early-init config -*- lexical-binding: t -*-
+;;; Commentary:
+;; 
+;;; Code:
 
 (setq native-comp-async-report-warnings-errors 'silent)
 (setq byte-compile-warnings nil)
@@ -14,3 +17,8 @@
 (setq default-frame-alist '((width . 200) (height . 55)))
 
 (setq inhibit-startup-message t)
+
+
+(provide 'early-init)
+
+;;; early-init.el ends here

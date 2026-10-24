@@ -1,11 +1,15 @@
-;;; init.el --- Emacs config -*- lexical-binding: t -*-
+;;; init.el --- my config -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 (defun split-and-follow-horizontally ()
+  "Split window horizontally and follow."
   (interactive)
   (split-window-below)
   (balance-windows)
   (other-window 1))
 (defun split-and-follow-vertically ()
+  "Split window vertically and follow."
   (interactive)
   (split-window-right)
   (balance-windows)
@@ -15,9 +19,9 @@
   :bind(("C-x 2" . 'split-and-follow-horizontally)
         ("C-x 3" . 'split-and-follow-vertically)
         ("s-C-<left>" . 'shrink-window-horizontally)
-	    ("s-C-<right>" . 'enlarge-window-horizontally)
-	    ("s-C-<down>" . 'shrink-window)
-	    ("s-C-<up>" . 'enlarge-window))
+	("s-C-<right>" . 'enlarge-window-horizontally)
+	("s-C-<down>" . 'shrink-window)
+	("s-C-<up>" . 'enlarge-window))
   
   :init
   (tool-bar-mode -1)
@@ -35,28 +39,22 @@
   ;;(setq make-backup-files nil)
   (setq backup-directory-alist '((".*" . "~/.Trash")))
   (setq version-control t)
-  (setq delete-old-versions t)  
+  (setq delete-old-versions t)
   (setq auto-save-default nil)
-  (setq-default indent-tabs-mode nil)
-  (setq-default tab-width 2)
-  (setq standard-indent 2)
-  (setq c-basic-offset tab-width)
+  ;(setq-default indent-tabs-mode nil)
+  ;(setq-default tab-width 2)
+  ;(setq-default c-basic-offset tab-width)
+  ;(setq standard-indent 2)
   (setq enable-recursive-minibuffers t)
   (setq read-extended-command-predicate #'command-completion-default-include-p)
   (setq minibuffer-prompt-properties
         '(read-only t cursor-intangible t face minibuffer-prompt))
   (setq-default display-line-numbers-width 4) ;; make window dont shift to right
-  
+
   :hook
   (prog-mode-hook . display-line-numbers-mode)
   (prog-mode-hook . subword-mode)
   (text-mode-hook . display-line-numbers-mode))
-
-
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-(package-initialize)
 
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -64,6 +62,15 @@
   (with-temp-buffer
     (write-file custom-file)))
 (load custom-file)
+
+
+(require 'package)
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+
+(use-package gruvbox-theme
+  :ensure t
+  :config
+  (load-theme 'gruvbox-dark-medium t))
 
 (use-package async
   :ensure t
@@ -75,35 +82,6 @@
   :ensure t
   :bind (("C-z" . 'undo-fu-only-undo)
 		 ("C-S-z" . 'undo-fu-only-redo)))
-
-
-(use-package doom-themes
-  :ensure t
-  :init
-  (load-theme 'doom-gruvbox t))
-
-;; (use-package mood-line
-;;   :ensure t
-;;   :init
-;;   (mood-line-mode 1)
-
-;;   :config
-;;   (setq mood-line-format
-;;    '(("┃ " (mood-line-segment-modal) " "
-;;       (or (mood-line-segment-buffer-status) " ") " "
-;;       (mood-line-segment-buffer-name) "  "
-;;       (mood-line-segment-anzu) "  "
-;;       (mood-line-segment-multiple-cursors) "  "
-;;       (mood-line-segment-cursor-position) " "
-;;       (mood-line-segment-scroll) "")
-	 
-;;      ((mood-line-segment-vc) "  "
-;;       (mood-line-segment-major-mode) "  "
-;;       (mood-line-segment-misc-info) "  "
-;;       (mood-line-segment-checker) "  "
-;;       (mood-line-segment-process) "  ")))
-  
-;;   (setq mood-line-glyph-alist mood-line-glyphs-fira-code))
 
 (use-package which-key
   :ensure t
@@ -130,23 +108,11 @@
 (use-package corfu
   :ensure t
   :custom
-  ;; (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
-  ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
-  ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
   (corfu-preview-current nil)    ;; Disable current candidate preview
-  ;; (corfu-preselect 'prompt)      ;; Preselect the prompt
-  ;; (corfu-on-exact-match 'insert) ;; Configure handling of exact matches
 
   :init
   (global-corfu-mode)
   (corfu-popupinfo-mode))
-
-(use-package kind-icon
-  :ensure t
-  :after corfu
-  
-  :config
-  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
 (use-package cape
   :ensure t
@@ -156,31 +122,28 @@
   (add-hook 'completion-at-point-functions #'cape-elisp-block)
   (add-hook 'completion-at-point-functions #'cape-tex))
 
-;; (use-package flycheck
-;;   :ensure t
-;;   :init
-;;   (global-flycheck-mode))
-
-(use-package lsp-mode
+(use-package flycheck
   :ensure t
-  :init
-  (setq lsp-keymap-prefix "C-c l")
-  :commands lsp
-  :custom
-  (lsp-modeline-diagnostics-enable nil)
-  (lsp-enable-on-type-formatting nil)
-  (lsp-signature-render-documentation nil)
-  (lsp-enable-symbol-highlighting nil)
-  (lsp-lens-enable nil)
-  (lsp-headerline-breadcrumb-enable nil))
+  :hook ((after-init . global-flycheck-mode)
+         ;; Show diagnostics inline
+         ;(after-init . global-flycheck-annotate-mode)
+	 )
+  :config
+  (global-flycheck-eglot-mode 1))
+
+;; (use-package go-mode
+;;   :ensure t)
 
 (use-package rust-mode
   :ensure t
   :mode ("\\.rs\\'" . rust-mode))
 
-(use-package qml-mode
-  :ensure t)
-
 (use-package zig-ts-mode
   :ensure t
   :mode ("\\.zig\\'" . zig-ts-mode))
+
+
+(provide 'init)
+;;; init.el ends here
+
+
