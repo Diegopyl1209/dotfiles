@@ -129,6 +129,7 @@
          ;(after-init . global-flycheck-annotate-mode)
 	 )
   :config
+  (setq-default flycheck-disabled-checkers '(rust-cargo))
   (global-flycheck-eglot-mode 1))
 
 ;; (use-package go-mode
